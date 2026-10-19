@@ -1,0 +1,164 @@
+CREATE TABLE KORISNICI
+(
+  username VARCHAR(100) NOT NULL,
+  ime VARCHAR(100) NOT NULL,
+  prezime VARCHAR(100) NOT NULL,
+  mailKorisnik VARCHAR(100) NOT NULL,
+  datumRodenja DATE NOT NULL,
+  aktivan BOOLEAN NOT NULL DEFAULT TRUE,
+  PRIMARY KEY (mailKorisnik),
+  UNIQUE (username)
+);
+
+CREATE TABLE LUKE
+(
+  idLuke INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  nazivLuke VARCHAR(100) NOT NULL,
+  mjesto VARCHAR(100) NOT NULL,
+  latituda NUMERIC(9,6),
+  longituda NUMERIC(9,6),
+  PRIMARY KEY (idLuke)
+);
+
+CREATE TABLE TIPPLOVILA
+(
+  idTipaPlovila INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  nazivTipaPlovila VARCHAR(100) NOT NULL,
+  PRIMARY KEY (idTipaPlovila)
+);
+
+CREATE TABLE PLOVILA
+(
+  idPlovila INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  nazivPlovila VARCHAR(100) NOT NULL,
+  proizvodac VARCHAR(100) NOT NULL,
+  godinaProizvodnje INT NOT NULL,
+  kapacitet INT NOT NULL,
+  brojKabina INT NOT NULL,
+  brojLezajeva INT NOT NULL,
+  model VARCHAR(100) NOT NULL,
+  dnevnaCijenaNajma NUMERIC(10,2) NOT NULL,
+  idLuke INT NOT NULL,
+  idTipaPlovila INT NOT NULL,
+  PRIMARY KEY (idPlovila),
+  FOREIGN KEY (idLuke) REFERENCES LUKE(idLuke),
+  FOREIGN KEY (idTipaPlovila) REFERENCES TIPPLOVILA(idTipaPlovila)
+);
+
+CREATE TABLE FOTOGRAFIJE
+(
+  idFotografije INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  url VARCHAR(255) NOT NULL,
+  glavnaSlika BOOLEAN NOT NULL DEFAULT FALSE,
+  idPlovila INT NOT NULL,
+  PRIMARY KEY (idFotografije),
+  FOREIGN KEY (idPlovila) REFERENCES PLOVILA(idPlovila)
+);
+
+CREATE TABLE OPREME
+(
+  idOpreme INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  nazivOpreme VARCHAR(100) NOT NULL,
+  cijena NUMERIC(10,2) NOT NULL,
+  opis TEXT,
+  PRIMARY KEY (idOpreme)
+);
+
+CREATE TABLE USLUGE
+(
+  idUsluge INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+  nazivUsluge VARCHAR(100) NOT NULL,
+  cijena NUMERIC(10,2) NOT NULL,
+  opis TEXT,
+  PRIMARY KEY (idUsluge)
+);
+
+CREATE TABLE DJELATNICI
+(
+  username VARCHAR(100) NOT NULL,
+  ime VARCHAR(100) NOT NULL,
+  prezime VARCHAR(100) NOT NULL,
+  mailDjelatnik VARCHAR(100) NOT NULL,
+  uloga VARCHAR(50) NOT NULL,
+  PRIMARY KEY (mailDjelatnik),
+  UNIQUE (username)
+);
+
+CREATE TABLE TERMINI
+(
+  idTermina INT GENERATED ALWAYS AS IDENTITY,
+  idPlovila INT NOT NULL,
+  vrijemeOd TIMESTAMP NOT NULL,
+  vrijemeDo TIMESTAMP NOT NULL,
+  PRIMARY KEY (idTermina),
+  FOREIGN KEY (idPlovila) REFERENCES PLOVILA(idPlovila)
+);
+
+CREATE TABLE REZERVACIJE
+(
+  idTermina INT,
+  status VARCHAR(50) NOT NULL,
+  mailKorisnik VARCHAR(100) NOT NULL,
+  iznos NUMERIC(10,2) NOT NULL,
+  brojOsoba INT NOT NULL,
+  poslanaObavijest BOOLEAN NOT NULL,
+  PRIMARY KEY (idTermina),
+  FOREIGN KEY (mailKorisnik) REFERENCES KORISNICI(mailKorisnik),
+  FOREIGN KEY (idTermina) REFERENCES TERMINI(idTermina)
+);
+
+CREATE TABLE NEDOSTUPNITERMINI
+(
+  idTermina INT,
+  opis VARCHAR(500) NOT NULL,
+  PRIMARY KEY (idTermina),
+  FOREIGN KEY (idTermina) REFERENCES TERMINI(idTermina)
+);
+
+CREATE TABLE IMAOPREMU
+(
+  idPlovila INT,
+  idOpreme INT,
+  PRIMARY KEY (idPlovila, idOpreme),
+  FOREIGN KEY (idPlovila) REFERENCES PLOVILA(idPlovila),
+  FOREIGN KEY (idOpreme) REFERENCES OPREME(idOpreme)
+);
+
+CREATE TABLE IMADODATNEUSLUGE
+(
+  idUsluge INT,
+  idTermina INT,
+  PRIMARY KEY (idUsluge, idTermina),
+  FOREIGN KEY (idUsluge) REFERENCES USLUGE(idUsluge),
+  FOREIGN KEY (idTermina) REFERENCES REZERVACIJE(idTermina)
+);
+
+CREATE TABLE IMADODATNUOPREMU
+(
+  idOpreme INT,
+  idTermina INT,
+  PRIMARY KEY (idOpreme, idTermina),
+  FOREIGN KEY (idOpreme) REFERENCES OPREME(idOpreme),
+  FOREIGN KEY (idTermina) REFERENCES REZERVACIJE(idTermina)
+);
+
+CREATE TABLE RADINA
+(
+  idTermina INT,
+  mailDjelatnik VARCHAR(100),
+  PRIMARY KEY (mailDjelatnik, idTermina),
+  FOREIGN KEY (mailDjelatnik) REFERENCES DJELATNICI(mailDjelatnik),
+  FOREIGN KEY (idTermina) REFERENCES TERMINI(idTermina)
+);
+
+CREATE TABLE REZERVACIJALUKA
+(
+  idTermina INT,
+  idLukePreuzimanja INT,
+  idLukePovratka INT,
+  smjer VARCHAR(50),
+  PRIMARY KEY (smjer, idTermina),
+  FOREIGN KEY (idTermina) REFERENCES REZERVACIJE(idTermina),
+  FOREIGN KEY (idLukePreuzimanja) REFERENCES LUKE(idLuke),
+  FOREIGN KEY (idLukePovratka) REFERENCES LUKE(idLuke)
+);
