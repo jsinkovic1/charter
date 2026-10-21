@@ -56,7 +56,7 @@ Granice projekta određuju funkcionalnosti koje pripadaju prvoj inačici aplikac
 **Vanjske ovisnosti:**
 
 - **Neon PostgreSQL:** pruža pohranu podataka o korisnicima, plovilima, rezervacijama, opremi, uslugama i ostalim poslovnim podacima.
-- **Gmail API i OAuth 2.0:** omogućuju autorizirani pristup Gmail računu aplikacije radi slanja e-pošte. Prijava korisnika u samu aplikaciju zasebno se rješava kroz njezin sustav korisničkih računa.
+- **Gmail API i OAuth 2.0:** omogućuju autorizirani pristup Gmail računu aplikacije radi slanja e-pošte. Prijava korisnika u samu aplikaciju zasebno se rješava kroz OAuth sustav, preko AAI@EduHr identiteta.
 - **Kartografska usluga:** omogućuje prikaz lokacija i karte, ovisno o mogućnostima i uvjetima korištenja odabranog kartografskog servisa.
 - **Meteorološka usluga:** omogućuje dohvat vremenske prognoze za relevantnu lokaciju i termin, ovisno o mogućnostima i uvjetima korištenja meteorološkog servisa.
 - **Hosting aplikacije:** aplikacija se postavlja na hosting platformu kako bi joj korisnici mogli pristupati putem interneta.

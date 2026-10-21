@@ -37,10 +37,9 @@ Nefunkcijski zahtjevi definiraju svojstva kvalitete, sigurnosne uvjete i uvjete 
 | NF-01 | Sučelje mora biti responzivno i prilagođeno računalima, tabletima i mobilnim uređajima. | Visok | Odobreni zadatak | Provjeriti ključne funkcionalnosti na širinama zaslona od 360, 768 i 1280 px te na mobilnom uređaju. |
 | NF-02 | Pristup podacima i funkcionalnostima mora biti ograničen prema korisničkim ovlastima. | Visok | Odobreni zadatak | Pokušaji pristupa zaštićenim stranicama i podacima bez odgovarajućih ovlasti moraju biti odbijeni. |
 | NF-03 | Sustav mora podržavati istodobni rad više korisnika bez narušavanja konzistentnosti podataka. | Visok | Odobreni zadatak | Pri istodobnim zahtjevima za isto plovilo i preklapajući termin smije uspjeti najviše jedan zahtjev. |
-| NF-04 | Lozinke se moraju pohranjivati u obliku sigurnog kriptografskog sažetka uz korištenje soli, a ne kao čitljiv tekst. | Visok | Odluka tima | Pregledati implementaciju autentifikacije i način pohrane podataka. |
-| NF-05 | Nedostupnost vanjskih meteoroloških i kartografskih servisa ne smije onemogućiti osnovne funkcionalnosti aplikacije. | Srednji | Odobreni zadatak | Simulirati nedostupnost servisa i provjeriti prikaz obavijesti te nastavak rada ostalih funkcionalnosti. |
-| NF-06 | Projekt mora imati dokumentaciju propisanu uputama kolegija. | Visok | Upute kolegija | Provjeriti potpunost i usklađenost dokumentacije sa stvarnom implementacijom. |
-| NF-07 | Projekt mora sadržavati plan implementacije koji omogućuje postavljanje i pokretanje aplikacije u novom okruženju. | Visok | Upute kolegija | Slijediti dokumentirane korake na čistom okruženju i provjeriti ispravnost pokretanja sustava. |
+| NF-04 | Nedostupnost vanjskih meteoroloških i kartografskih servisa ne smije onemogućiti osnovne funkcionalnosti aplikacije. | Srednji | Odobreni zadatak | Simulirati nedostupnost servisa i provjeriti prikaz obavijesti te nastavak rada ostalih funkcionalnosti. |
+| NF-05 | Projekt mora imati dokumentaciju propisanu uputama kolegija. | Visok | Upute kolegija | Provjeriti potpunost i usklađenost dokumentacije sa stvarnom implementacijom. |
+| NF-06 | Projekt mora sadržavati plan implementacije koji omogućuje postavljanje i pokretanje aplikacije u novom okruženju. | Visok | Upute kolegija | Slijediti dokumentirane korake na čistom okruženju i provjeriti ispravnost pokretanja sustava. |
 
 ## 2.3 Dionici i akteri
 
@@ -53,8 +52,8 @@ Dionici su osobe ili organizacije koje imaju interes u sustavu, dok su akteri on
 | A-03 | Djelatnik | Pregledava raspored preuzimanja i povrata te evidentira realizaciju najma. | F-012, F-013 |
 | A-04 | Voditelj charter tvrtke | Pregledava statističke podatke i izvozi izvještaje. | F-018, F-019 |
 | A-05 | Administrator sustava | Upravlja korisnicima, plovilima, opremom, cijenama, uslugama, rezervacijama i nedostupnošću plovila. | F-001, F-014–F-017, F-019 |
-| A-06 | Meteorološki servis | Isporučuje podatke o vremenskoj prognozi. | F-005, NF-05 |
-| A-07 | Kartografski servis | Omogućuje prikaz karte i lokacija plovila. | F-004, NF-05 |
+| A-06 | Meteorološki servis | Isporučuje podatke o vremenskoj prognozi. | F-005, NF-04 |
+| A-07 | Kartografski servis | Omogućuje prikaz karte i lokacija plovila. | F-004, NF-04 |
 | A-08 | Servis za slanje e-pošte | Omogućuje slanje potvrda rezervacija klijentima. | F-010 |
 
 ## 2.4 Ograničenja i pretpostavke
@@ -108,11 +107,11 @@ Sljedivost povezuje zahtjeve s funkcionalnim cjelinama aplikacije, planiranom ar
 | F-017 | Upravljanje raspoloživošću | Modul nedostupnosti plovila | Unos razdoblja nedostupnosti i provjera sukoba s rezervacijama |
 | F-018–F-019 | Izvještavanje | Modul statistike i izvoza podataka | Provjera statističkih izračuna i sadržaja CSV datoteke |
 | NF-01 | Sva korisnička sučelja | Responzivni klijentski dio aplikacije | Provjera sučelja na različitim širinama zaslona |
-| NF-02, NF-04 | Sigurnost sustava | Autentifikacija, autorizacija i sigurna pohrana lozinki | Testovi pristupa i pregled pohrane podataka |
+| NF-02 | Sigurnost sustava | Autentifikacija, autorizacija i sigurna pohrana lozinki | Testovi pristupa i pregled pohrane podataka |
 | NF-03 | Rezervacije | Transakcijska obrada i zaštita konzistentnosti podataka | Test istodobnih zahtjeva za isto plovilo i termin |
-| NF-05 | Vanjske integracije | Obrada pogrešaka i izdvojeni moduli integracija | Simulacija nedostupnosti vanjskih servisa |
-| NF-06 | Dokumentacija projekta | Projektna dokumentacija | Pregled dokumentacije |
-| NF-07 | Plan implementacije | Konfiguracija i postupak postavljanja aplikacije | Postavljanje i pokretanje sustava u novom okruženju |
+| NF-04 | Vanjske integracije | Obrada pogrešaka i izdvojeni moduli integracija | Simulacija nedostupnosti vanjskih servisa |
+| NF-05 | Dokumentacija projekta | Projektna dokumentacija | Pregled dokumentacije |
+| NF-06 | Plan implementacije | Konfiguracija i postupak postavljanja aplikacije | Postavljanje i pokretanje sustava u novom okruženju |
 
 ## 2.7 Pregled zahtjeva
 
