@@ -11,5 +11,5 @@ public partial class Usluga
 
     public decimal Cijenausluge { get; set; }
 
-    public virtual ICollection<Rezervacija> Idterminas { get; set; } = new List<Rezervacija>();
+    public virtual ICollection<Rezervacija> Termini { get; set; } = new List<Rezervacija>();
 }

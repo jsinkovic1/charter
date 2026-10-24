@@ -9,5 +9,5 @@ public partial class Nedostupnitermin
 
     public string Opis { get; set; } = null!;
 
-    public virtual Termin IdterminaNavigation { get; set; } = null!;
+    public virtual Termin Termin { get; set; } = null!;
 }

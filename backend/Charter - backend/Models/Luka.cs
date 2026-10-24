@@ -15,7 +15,7 @@ public partial class Luka
 
     public decimal Longituda { get; set; }
 
-    public virtual ICollection<Plovilo> Plovilos { get; set; } = new List<Plovilo>();
+    public virtual ICollection<Plovilo> Plovila { get; set; } = new List<Plovilo>();
 
-    public virtual ICollection<Rezervacija> Rezervacijas { get; set; } = new List<Rezervacija>();
+    public virtual ICollection<Rezervacija> Rezervacije { get; set; } = new List<Rezervacija>();
 }

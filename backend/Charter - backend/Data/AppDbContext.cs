@@ -10,29 +10,35 @@ public partial class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
+
     }
 
-    public virtual DbSet<Fotografija> Fotografijas { get; set; }
+    public virtual DbSet<Fotografija> Fotografije { get; set; }
 
-    public virtual DbSet<Korisnik> Korisniks { get; set; }
+    public virtual DbSet<Korisnik> Korisnici { get; set; }
 
-    public virtual DbSet<Luka> Lukas { get; set; }
+    public virtual DbSet<Luka> Luke { get; set; }
 
-    public virtual DbSet<Nedostupnitermin> Nedostupnitermins { get; set; }
+    public virtual DbSet<Nedostupnitermin> Nedostupnitermini { get; set; }
 
-    public virtual DbSet<Oprema> Opremas { get; set; }
+    public virtual DbSet<Oprema> Oprema { get; set; }
 
-    public virtual DbSet<Plovilo> Plovilos { get; set; }
+    public virtual DbSet<Plovilo> Plovila { get; set; }
 
-    public virtual DbSet<Proizvodac> Proizvodacs { get; set; }
+    public virtual DbSet<Proizvodac> Proizvodaci { get; set; }
 
-    public virtual DbSet<Rezervacija> Rezervacijas { get; set; }
+    public virtual DbSet<Rezervacija> Rezervacije { get; set; }
 
-    public virtual DbSet<Termin> Termins { get; set; }
+    public virtual DbSet<Termin> Termini { get; set; }
 
-    public virtual DbSet<Tipplovila> Tipplovilas { get; set; }
+    public virtual DbSet<Tipplovila> Tipplovila { get; set; }
 
-    public virtual DbSet<Usluga> Uslugas { get; set; }
+    public virtual DbSet<Usluga> Usluge { get; set; }
+    public virtual DbSet<Imadodatneusluge> Imadodatneusluge { get; set; }
+    public virtual DbSet<Imadodatnuopremu> Imadodatnuopremu { get; set; }
+    public virtual DbSet<Imaopremu> ImaOpremu { get; set; }
+    public virtual DbSet<Korisnik_rezervacija> Korisnik_rezervacija { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -53,7 +59,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("url");
 
-            entity.HasOne(d => d.IdplovilaNavigation).WithMany(p => p.Fotografijas)
+            entity.HasOne(d => d.Plovilo).WithMany(p => p.Fotografije)
                 .HasForeignKey(d => d.Idplovila)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fotografija_idplovila_fkey");
@@ -127,7 +133,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("opis");
 
-            entity.HasOne(d => d.IdterminaNavigation).WithOne(p => p.Nedostupnitermin)
+            entity.HasOne(d => d.Termin).WithOne(p => p.Nedostupnitermin)
                 .HasForeignKey<Nedostupnitermin>(d => d.Idtermina)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("nedostupnitermin_idtermina_fkey");
@@ -149,7 +155,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("nazivopreme");
 
-            entity.HasMany(d => d.Idterminas).WithMany(p => p.Idopremes)
+            entity.HasMany(d => d.Rezervacije).WithMany(p => p.Oprema)
                 .UsingEntity<Dictionary<string, object>>(
                     "Imadodatnuopremu",
                     r => r.HasOne<Rezervacija>().WithMany()
@@ -195,22 +201,22 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("nazivplovila");
 
-            entity.HasOne(d => d.IdlukeNavigation).WithMany(p => p.Plovilos)
+            entity.HasOne(d => d.Luka).WithMany(p => p.Plovila)
                 .HasForeignKey(d => d.Idluke)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("plovilo_idluke_fkey");
 
-            entity.HasOne(d => d.IdproizvodacaNavigation).WithMany(p => p.Plovilos)
+            entity.HasOne(d => d.Proizvodac).WithMany(p => p.Plovila)
                 .HasForeignKey(d => d.Idproizvodaca)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("plovilo_idproizvodaca_fkey");
 
-            entity.HasOne(d => d.IdtipaplovilaNavigation).WithMany(p => p.Plovilos)
+            entity.HasOne(d => d.Tipplovila).WithMany(p => p.Plovila)
                 .HasForeignKey(d => d.Idtipaplovila)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("plovilo_idtipaplovila_fkey");
 
-            entity.HasMany(d => d.Idopremes).WithMany(p => p.Idplovilas)
+            entity.HasMany(d => d.Oprema).WithMany(p => p.Plovila)
                 .UsingEntity<Dictionary<string, object>>(
                     "Imaopremu",
                     r => r.HasOne<Oprema>().WithMany()
@@ -264,17 +270,17 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(30)
                 .HasColumnName("status");
 
-            entity.HasOne(d => d.IdlukeNavigation).WithMany(p => p.Rezervacijas)
+            entity.HasOne(d => d.Luka).WithMany(p => p.Rezervacije)
                 .HasForeignKey(d => d.Idluke)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("rezervacija_idluke_fkey");
 
-            entity.HasOne(d => d.IdterminaNavigation).WithOne(p => p.Rezervacija)
+            entity.HasOne(d => d.Termin).WithOne(p => p.Rezervacija)
                 .HasForeignKey<Rezervacija>(d => d.Idtermina)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("rezervacija_idtermina_fkey");
 
-            entity.HasMany(d => d.Idkorisnikas).WithMany(p => p.Idterminas)
+            entity.HasMany(d => d.Korisnici).WithMany(p => p.Rezervacije)
                 .UsingEntity<Dictionary<string, object>>(
                     "KorisnikRezervacija",
                     r => r.HasOne<Korisnik>().WithMany()
@@ -311,7 +317,7 @@ public partial class AppDbContext : DbContext
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("vrijemeod");
 
-            entity.HasOne(d => d.IdplovilaNavigation).WithMany(p => p.Termins)
+            entity.HasOne(d => d.Plovilo).WithMany(p => p.Termini)
                 .HasForeignKey(d => d.Idplovila)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("termin_idplovila_fkey");
@@ -347,7 +353,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("nazivusluge");
 
-            entity.HasMany(d => d.Idterminas).WithMany(p => p.Idusluges)
+            entity.HasMany(d => d.Termini).WithMany(p => p.Usluge)
                 .UsingEntity<Dictionary<string, object>>(
                     "Imadodatneusluge",
                     r => r.HasOne<Rezervacija>().WithMany()
@@ -366,6 +372,56 @@ public partial class AppDbContext : DbContext
                         j.IndexerProperty<int>("Idtermina").HasColumnName("idtermina");
                     });
         });
+
+        modelBuilder.Entity<Imadodatneusluge>(entity =>
+        {
+
+            entity.HasKey(e => new { e.idusluge, e.idtermina });
+            entity.ToTable("imadodatneusluge");
+
+            entity.Property(e => e.idtermina).UseIdentityAlwaysColumn().HasColumnName("idtermina");
+            entity.Property(e => e.idusluge).UseIdentityAlwaysColumn().HasColumnName("idusluge");
+
+            entity.HasOne(d => d.Usluga).WithMany().HasForeignKey(d => d.idusluge);
+            entity.HasOne(d => d.Rezervacija).WithMany().HasForeignKey(e => e.idtermina);
+        });
+
+        modelBuilder.Entity<Imadodatnuopremu>(entity =>
+        {
+            entity.HasKey(e => new { e.idtermina, e.idopreme });
+            entity.ToTable("imadodatnuopremu");
+
+            entity.Property(e => e.idopreme).UseIdentityAlwaysColumn().HasColumnName("idopreme");
+            entity.Property(e => e.idtermina).UseIdentityAlwaysColumn().HasColumnName("idtermina");
+
+            entity.HasOne(d => d.Oprema).WithMany().HasForeignKey(d => d.idopreme);
+            entity.HasOne(d => d.Rezervacija).WithMany().HasForeignKey(d => d.idtermina);
+        });
+
+        modelBuilder.Entity<Imaopremu>(entity =>
+        {
+            entity.HasKey(e => new { e.idplovila, e.idopreme });
+            entity.ToTable("imaopremu");
+
+            entity.Property(e => e.idopreme).UseIdentityAlwaysColumn().HasColumnName("idopreme");
+            entity.Property(e => e.idplovila).UseIdentityAlwaysColumn().HasColumnName("idplovila");
+
+            entity.HasOne(d => d.Oprema).WithMany().HasForeignKey(d => d.idopreme);
+            entity.HasOne(d => d.Plovilo).WithMany().HasForeignKey(e => e.idplovila);
+        });
+
+        modelBuilder.Entity<Korisnik_rezervacija>(entity =>
+        {
+            entity.HasKey(e => new { e.idkorisnika, e.idtermina });
+            entity.ToTable("korisnik_rezervacija");
+
+            entity.Property(e => e.idkorisnika).UseIdentityAlwaysColumn().HasColumnName("idkorisnika");
+            entity.Property(e => e.idtermina).UseIdentityAlwaysColumn().HasColumnName("idtermina");
+
+            entity.HasOne(d => d.Korisnik).WithMany().HasForeignKey(d => d.idkorisnika);
+            entity.HasOne(d => d.Rezervacija).WithMany().HasForeignKey(e => e.idtermina);
+        });
+
 
         OnModelCreatingPartial(modelBuilder);
     }

@@ -11,7 +11,7 @@ public partial class Oprema
 
     public decimal Cijenanajma { get; set; }
 
-    public virtual ICollection<Plovilo> Idplovilas { get; set; } = new List<Plovilo>();
+    public virtual ICollection<Plovilo> Plovila { get; set; } = new List<Plovilo>();
 
-    public virtual ICollection<Rezervacija> Idterminas { get; set; } = new List<Rezervacija>();
+    public virtual ICollection<Rezervacija> Rezervacije { get; set; } = new List<Rezervacija>();
 }

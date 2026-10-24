@@ -21,5 +21,5 @@ public partial class Korisnik
 
     public string Uloga { get; set; } = null!;
 
-    public virtual ICollection<Rezervacija> Idterminas { get; set; } = new List<Rezervacija>();
+    public virtual ICollection<Rezervacija> Rezervacije { get; set; } = new List<Rezervacija>();
 }

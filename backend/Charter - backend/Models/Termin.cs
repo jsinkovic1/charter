@@ -13,7 +13,7 @@ public partial class Termin
 
     public int Idplovila { get; set; }
 
-    public virtual Plovilo IdplovilaNavigation { get; set; } = null!;
+    public virtual Plovilo Plovilo { get; set; } = null!;
 
     public virtual Nedostupnitermin? Nedostupnitermin { get; set; }
 

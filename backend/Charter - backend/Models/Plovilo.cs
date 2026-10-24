@@ -29,13 +29,13 @@ public partial class Plovilo
 
     public virtual ICollection<Fotografija> Fotografije { get; set; } = new List<Fotografija>();
 
-    public virtual Luka IdlukeNavigation { get; set; } = null!;
+    public virtual Luka Luka { get; set; } = null!;
 
-    public virtual Proizvodac IdproizvodacaNavigation { get; set; } = null!;
+    public virtual Proizvodac Proizvodac { get; set; } = null!;
 
-    public virtual Tipplovila IdtipaplovilaNavigation { get; set; } = null!;
+    public virtual Tipplovila Tipplovila { get; set; } = null!;
 
     public virtual ICollection<Termin> Termini { get; set; } = new List<Termin>();
 
-    public virtual ICollection<Oprema> Idoprema { get; set; } = new List<Oprema>();
+    public virtual ICollection<Oprema> Oprema { get; set; } = new List<Oprema>();
 }

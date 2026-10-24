@@ -9,5 +9,5 @@ public class Imadodatneusluge
 
 	public Usluga Usluga { get; set; } = null!;
 
-	public Rezervacija rezervacija { get; set; } = null!;
+	public Rezervacija Rezervacija { get; set; } = null!;
 }

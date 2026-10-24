@@ -9,5 +9,5 @@ public partial class Proizvodac
 
     public string Nazivproizvodaca { get; set; } = null!;
 
-    public virtual ICollection<Plovilo> Plovilos { get; set; } = new List<Plovilo>();
+    public virtual ICollection<Plovilo> Plovila { get; set; } = new List<Plovilo>();
 }
