@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Charter___backend.Models;
+
+public partial class Termin
+{
+    public int Idtermina { get; set; }
+
+    public DateTime Vrijemeod { get; set; }
+
+    public DateTime Vrijemedo { get; set; }
+
+    public int Idplovila { get; set; }
+
+    public virtual Plovilo IdplovilaNavigation { get; set; } = null!;
+
+    public virtual Nedostupnitermin? Nedostupnitermin { get; set; }
+
+    public virtual Rezervacija? Rezervacija { get; set; }
+}

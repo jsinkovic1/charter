@@ -1,0 +1,6 @@
+@Charter___backend_HostAddress = http://localhost:5201
+
+GET {{Charter___backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
