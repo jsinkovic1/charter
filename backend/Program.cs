@@ -1,4 +1,4 @@
-using Charter___backend.Data;
+using CharterBackend.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

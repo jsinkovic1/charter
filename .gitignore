@@ -85,3 +85,6 @@ out
 .pnpm-store
 
 .vs/
+/backend/bin/
+/backend/obj/
+/backend/.idea/

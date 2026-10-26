@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Charter___backend.Models;
+using CharterBackend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Charter___backend.Data;
+namespace CharterBackend.Data;
 
 public partial class AppDbContext : DbContext
 {

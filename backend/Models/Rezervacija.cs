@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Charter___backend.Models;
+namespace CharterBackend.Models;
 
 public partial class Rezervacija
 {
