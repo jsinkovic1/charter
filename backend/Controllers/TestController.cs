@@ -16,7 +16,8 @@ namespace CharterBackend.Controllers
             var res = new
             {
                 time = DateTime.Now,
-                foo = "bar"
+                foo = "bar",
+                test = true
             };
             
             return Ok(res);
