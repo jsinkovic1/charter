@@ -6,12 +6,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
-      - name: Trigger Render Deploy Hook
+      - name: Trigger AWS Deploy Hook
         run: |
-          if [ -n "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
-            curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
-          else
-            echo "RENDER_DEPLOY_HOOK_URL not set. Skipping."
-          fi
+          echo ${{ secrets.SuperSecret }} >> key.pem
+          docker build -o type=oci,dest=build/charter-build --tag charter-build:latest .
