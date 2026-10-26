@@ -1,10 +1,10 @@
-﻿using Charter___backend.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using CharterBackend.Data;
 
-namespace Charter___backend.Controllers
+namespace CharterBackend.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
