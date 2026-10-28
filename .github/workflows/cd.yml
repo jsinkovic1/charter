@@ -8,10 +8,35 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Render Deploy Hook
+      - name: Checkout branch
+        uses: actions/checkout@v6.0.0
+        
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v5
+
+      - name: Build with Docker
         run: |
-          if [ -n "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
-            curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
-          else
-            echo "RENDER_DEPLOY_HOOK_URL not set. Skipping."
-          fi
+          mkdir build
+          docker build -f Dockerfile -o type=oci,dest=build/charter-build --tag charter-build:latest .
+      
+      - name: Upload image to AWS server
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: "build/charter-build"
+          host: "ec2-13-50-242-217.eu-north-1.compute.amazonaws.com"
+          remote: "/home/ubuntu/charter-build"
+          port: "22"
+          user: "ubuntu"
+          key: ${{ secrets.SERVER_LOGIN }}
+          
+      - name: Load image and restart HTTP server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: "ec2-13-50-242-217.eu-north-1.compute.amazonaws.com"
+          username: "ubuntu"
+          key: ${{ secrets.SERVER_LOGIN }}
+          port: "22"
+          script: |
+            sudo docker load -i charter-build
+            sudo docker stop charter-http-server
+            sudo docker run -d --name charter-http-server --rm -p 5201:8080 charter-build:latest
