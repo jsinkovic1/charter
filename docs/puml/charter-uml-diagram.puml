@@ -1,0 +1,97 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 13
+skinparam nodesep 28
+skinparam ranksep 120
+skinparam roundCorner 14
+
+' boje
+skinparam usecase {
+    BackgroundColor #D8E8FF
+    BorderColor #5070A0
+    ArrowColor #000000
+    FontSize 12
+}
+skinparam actor {
+    BackgroundColor #FFFFFF
+    BorderColor #707070
+}
+skinparam actor<<external system>> {
+    BackgroundColor #FFFDE0
+    BorderColor #A09060
+}
+skinparam rectangle {
+    BackgroundColor #FAFCFF
+    BorderColor #5070A0
+    FontStyle bold
+    FontSize 15
+}
+hide stereotype
+
+' akteri
+actor "Posjetitelj" as posjetitelj
+actor "Klijent" as klijent
+actor "Djelatnik" as djelatnik
+actor "Voditelj" as voditelj
+actor "Administrator" as admin
+actor "Prijavljeni korisnik" as user
+
+user <|-- admin
+user <|-- voditelj
+user <|-- djelatnik
+user <|-- klijent
+
+' vanjski sustavi
+actor "Pružatelj identiteta\n(AAI@EduHr)" as aai <<external system>>
+actor "Servis za slanje\ne-pošte" as mail <<external system>>
+actor "Meteorološki\nservis" as meteo <<external system>>
+actor "Kartografski\nservis" as maps <<external system>>
+
+' obrnuti redoslijed da UC-001 bude na vrhu
+rectangle "Sustav za charter poslovanje" {
+    usecase "UC-011: Pregled statistike\ni izvoz izvještaja" as UC11
+    usecase "UC-010: Upravljanje flotom,\ncjenicima i nedostupnošću" as UC10
+    usecase "UC-009: Obrada rezervacija i\ndodjela djelatnika" as UC9
+    usecase "UC-008: Upravljanje korisnicima\ni specijalnostima" as UC8
+    usecase "UC-007: Pregled rasporeda\npreuzimanja i povrata" as UC7
+    usecase "UC-006: Izmjena i otkazivanje\nvlastite rezervacije" as UC6
+    usecase "UC-005: Pregled vlastitih\nrezervacija" as UC5
+    usecase "UC-004: Izrada zahtjeva\nza rezervaciju" as UC4
+    usecase "UC-003: Pregled detalja plovila,\nkarte i vremenske prognoze" as UC3
+    usecase "UC-002: Pretraživanje i\nfiltriranje plovila" as UC2
+    usecase "UC-001: Prijava u sustav\nputem AAI@EduHr" as UC1
+}
+
+' posjetitelj i klijent
+posjetitelj --> UC2
+posjetitelj --> UC3
+
+klijent --> UC2
+klijent --> UC3
+klijent --> UC4
+klijent --> UC5
+klijent --> UC6
+UC6 --> mail
+
+' prijava
+user --> UC1
+UC1 --> aai
+
+' karta i vrijeme
+UC3 --> maps
+UC3 --> meteo
+
+' djelatnik
+djelatnik --> UC7
+
+' administrator i voditelj
+admin --> UC8
+admin --> UC9
+UC9 --> mail
+admin --> UC10
+admin --> UC11
+voditelj --> UC11
+@enduml
