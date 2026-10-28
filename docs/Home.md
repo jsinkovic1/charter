@@ -11,12 +11,14 @@
 
 Web-aplikacija za upravljanje poslovanjem charter tvrtke koja iznajmljuje plovila (projektni zadatak: Charter poslovanje). Klijenti pretražuju plovila prema terminu, matičnoj luci, vrsti i kapacitetu, vide ukupnu cijenu najma i šalju zahtjev za rezervaciju, dok djelatnici, voditelj i administrator tvrtke na jednom mjestu upravljaju flotom, rezervacijama, dodatnim uslugama, nedostupnošću plovila i rasporedom preuzimanja i povrata. Korisnici se prijavljuju putem AAI@EduHr, a aplikacija uz plovila prikazuje kartu matične luke i vremensku prognozu.
 
+<!--
 **Aplikacija i osnovno postavljanje:** [README repozitorija](../README_PREDLOZAK.md#quick-start)  
 **Javno dostupna aplikacija:** pogledajte [README – Postavljanje](../README_PREDLOZAK.md#deployment)
+-->
 
 ## Članovi tima i uloge
 
-Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa nalazi se u [README-u repozitoriju](../README_PREDLOZAK.md#team-members).
+Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa nalazi se u [README-u repozitoriju](../README.md#team-members).
 
 ## Kazalo dokumentacije
 
@@ -25,12 +27,15 @@ Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa
 | [1. Opseg projekta](1-Projekt.md) | Problem, cilj i granice projekta |
 | [2. Analiza zahtjeva](2-Analiza-zahtjeva.md) | Zahtjevi, ograničenja i sljedivost |
 | [3. Obrasci uporabe](3-Obrasci-uporabe.md) | Akteri i reprezentativne interakcije korisnika |
+| [A. Pregled aktivnosti grupe](A-Pregled-aktivnosti-grupe.md) | Aktivnosti tima, doprinosi i izazovi |
+<!--
 | [4. Arhitektura i oblikovanje](4-Arhitektura-i-oblikovanje.md) | Glavne odluke oblikovanja, struktura, podaci i ponašanje |
 | [5. Ispitivanje](5-Ispitivanje.md) | Pristup ispitivanju, stvarni rezultati i poznati nedostaci |
 | [6. Postavljanje, instalacija i konfiguracija](6-Postavljanje-instalacija-i-konfiguracija.md) | Lokalna instalacija, konfiguracija, javno postavljanje i administracija |
 | [7. Zaključak i budući rad](7-Zakljucak-i-buduci-rad.md) | Zaključak i moguća daljnja poboljšanja |
-| [A. Pregled aktivnosti grupe](A-Pregled-aktivnosti-grupe.md) | Aktivnosti tima, doprinosi i izazovi |
+-->
 
+<!--
 ## Ključne točke projekta
 
 | Kontrolna točka | Demonstracija | Video |
@@ -39,6 +44,7 @@ Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa
 | Završni pregled | [Poveznica na završnu inačicu projekta] | [Poveznica na video završne demonstracije, ako je snimljen] |
 
 Dokumentacija se kontinuirano ažurira kako se aplikacija razvija.
+-->
 
 ## Organizacija projekta i razvojni proces
 

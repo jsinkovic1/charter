@@ -2,7 +2,7 @@
 
 ## 1.1 Problem i cilj projekta
 
-Cilj projekta je razvoj web-aplikacije za upravljanje poslovanjem charter tvrtke koja iznajmljuje plovila. Aplikacija klijentima treba omogućiti jednostavno pronalaženje odgovarajućeg plovila prema terminu i karakteristikama, uvid u cijenu najma i slanje zahtjeva za rezervaciju. Zaposlenicima tvrtke treba pružiti jedinstveno mjesto za upravljanje flotom, rezervacijama, dodatnim uslugama, nedostupnošću plovila te rasporedom preuzimanja i povrata.
+Cilj projekta je razvoj web-aplikacije za upravljanje poslovanjem charter tvrtke koja iznajmljuje plovila. Aplikacija klijentima treba omogućiti jednostavno pronalaženje odgovarajućeg plovila prema terminu i karakteristikama, uvid u cijenu najma i slanje zahtjeva za rezervaciju. Zaposlenicima tvrtke treba pružiti jedinstveno mjesto za upravljanje flotom, rezervacijama, dodatnim uslugama, nedostupnošću plovila, dodjelom djelatnika rezervacijama te rasporedom preuzimanja i povrata.
 
 Kada se provjera dostupnosti plovila, dogovaranje termina, evidentiranje dodatnih usluga i praćenje rezervacija vode odvojeno, otežan je pregled poslovanja i raste mogućnost pogreške, osobito dvostrukog rezerviranja istog plovila u terminima koji se preklapaju. Predložena aplikacija objedinjuje te postupke u jednom sustavu s jednoznačnom evidencijom zauzetosti plovila.
 
@@ -14,10 +14,10 @@ Svi korisnici u sustav se prijavljuju isključivo putem AAI@EduHr identiteta (OA
 
 | Skupina korisnika ili dionika | Potreba ili interes relevantan za ovaj projekt |
 | --- | --- |
-| Posjetitelj (neprijavljeni korisnik) | Bez prijave pregledati katalog plovila, njihove detalje, raspoloživost, kartu, vremensku prognozu i dodatne usluge. |
-| Klijent (prijavljeni korisnik koji želi unajmiti plovilo) | Pretražiti plovila prema terminu i karakteristikama, vidjeti cijenu, poslati zahtjev za rezervaciju s dodatnim uslugama te pregledati, izmijeniti ili otkazati vlastite rezervacije u skladu s pravilima sustava. |
-| Djelatnik charter tvrtke | Pregledati raspored preuzimanja i povrata plovila te podatke potrebne za realizaciju najma i evidentirati preuzimanje i povrat. |
-| Administrator | Upravljati korisničkim računima i ulogama, plovilima, lukama, vrstama plovila, fotografijama, opremom, cijenama, dodatnim uslugama, rezervacijama i razdobljima nedostupnosti te održavati ispravnost podataka sustava. |
+| Posjetitelj (neprijavljeni korisnik) | Bez prijave pregledati katalog plovila, njihove detalje, raspoloživost, kartu, vremensku prognozu i dodatne usluge i opremu. |
+| Klijent (prijavljeni korisnik koji želi unajmiti plovilo) | Pretražiti plovila prema terminu i karakteristikama, vidjeti cijenu, poslati zahtjev za rezervaciju s dodatnim uslugama i opremom te pregledati, izmijeniti ili otkazati vlastite rezervacije u skladu s pravilima sustava. |
+| Djelatnik charter tvrtke | Pregledati raspored preuzimanja i povrata plovila te podatke potrebne za realizaciju najma. Svaki djelatnik ima svoju specijalnost (skiper, mehaničar, čistač...) |
+| Administrator | Upravljati korisničkim računima, ulogama i specijalnostima, plovilima, lukama, vrstama plovila, fotografijama, opremom, cijenama, dodatnim uslugama, rezervacijama i razdobljima nedostupnosti, dodjeljivati djelatnike rezervacijama te održavati ispravnost podataka sustava. |
 | Voditelj charter tvrtke | Pregledati statističke podatke o poslovanju (broj rezervacija, zauzetost, iznosi, najtraženije kategorije i usluge) i izvesti izvještaje. |
 | Vlasnik ili uprava charter tvrtke (dionik) | Osigurati da aplikacija podržava poslovne potrebe tvrtke, olakšava organizaciju najma i kontrolira pristup podacima prema ulogama. |
 | Pružatelji vanjskih usluga (dionici) | AAI@EduHr (prijava), meteorološki i kartografski servis te servis za slanje e-pošte omogućuju rad aplikacije, ovisno o dostupnosti i uvjetima korištenja tih usluga. |
@@ -33,35 +33,34 @@ Granice projekta određuju funkcionalnosti koje pripadaju prvoj inačici aplikac
 
 **Uključeno:**
 
-- Prijava i odjava isključivo putem AAI@EduHr (OAuth 2.0); automatsko stvaranje računa pri prvoj prijavi, upravljanje korisničkim računima i ulogama (klijent, djelatnik, voditelj, administrator).
-- Pregled kataloga plovila i dodatnih usluga bez prijave; pretraživanje i filtriranje prema terminu najma, matičnoj luci, vrsti plovila i kapacitetu.
+- Prijava i odjava isključivo putem AAI@EduHr (OAuth 2.0); automatsko stvaranje računa pri prvoj prijavi, upravljanje korisničkim računima, ulogama (klijent, djelatnik, voditelj, administrator) i specijalnostima djelatnika.
+- Pregled kataloga plovila te dodatnih usluga i opreme bez prijave; pretraživanje i filtriranje prema terminu najma, matičnoj luci, vrsti plovila i kapacitetu.
 - Prikaz detalja plovila (osnovni podaci, fotografije, oprema, matična luka, cijena najma) i kalendara raspoloživosti.
-- Izrada, izmjena (dok je zahtjev u obradi), potvrđivanje, odbijanje i otkazivanje rezervacija uz definirane statuse i dopuštene prijelaze.
-- Evidencija zauzetosti plovila, razdoblja nedostupnosti i sprječavanje preklapanja termina.
-- Odabir dodatnih usluga (uključujući dodatnu opremu) i izračun ukupnog iznosa rezervacije.
-- Raspored preuzimanja i povrata za djelatnike te evidentiranje preuzimanja i povrata.
+- Izrada, izmjena (dok je zahtjev u obradi), potvrđivanje, odbijanje i otkazivanje rezervacija uz definirane statuse i dopuštene prijelaze; automatski završetak najma nakon isteka razdoblja najma.
+- Evidencija zauzetosti plovila, razdoblja nedostupnosti i sprječavanje preklapanja termina; razdoblja se zadaju datumom i vremenom.
+- Odabir dodatnih usluga i dodatne opreme (s količinom) te izračun ukupnog iznosa rezervacije prema broju započetih 24-satnih razdoblja najma.
+- Dodjela djelatnika rezervaciji uz upozorenja kada usluga zahtijeva specijalnost koju nitko od dodijeljenih djelatnika nema te kada je djelatnik već dodijeljen preklapajućoj rezervaciji.
+- Raspored preuzimanja i povrata za djelatnike s podacima o dodijeljenim djelatnicima.
 - Upravljanje plovilima, lukama, vrstama plovila, fotografijama, opremom, cijenama, dodatnim uslugama i nedostupnošću.
 - Slanje e-pošte: potvrda rezervacije i obavijest o otkazivanju ili odbijanju.
 - Statistika poslovanja i izvoz izvještaja u CSV formatu.
 - Prikaz matične luke (mjesta preuzimanja) na karti i vremenske prognoze putem vanjskih usluga, u granicama mogućnosti tih usluga.
-- Responzivno korisničko sučelje za računala, tablete i mobilne uređaje.uga.
 - Responzivno korisničko sučelje za računala, tablete i mobilne uređaje.
-- Prikaz lokacija na karti i vremenske prognoze putem vanjskih usluga, u granicama projektnog zadatka i mogućnosti tih usluga.
 
 **Izvan opsega ili odgođeno:**
 
 - **Online plaćanje:** aplikacija prikazuje izračunati iznos, ali ne provodi naplatu niti obrađuje podatke o platnim karticama ili evidenciju uplata.
 - **Prijava lokalnim računom i lozinkom:** kolegij zahtijeva da je AAI@EduHr jedini način prijave, pa aplikacija ne nudi vlastitu registraciju ni pohranu lozinki.
-- **Naknade za otkazivanje, sezonski cjenici i popusti:** nisu traženi zadatkom; cijena najma određuje se po noćenju, čime se model cijena drži jednostavnim.
-- **Rezervacija više plovila odjednom i alternativne lokacije preuzimanja i povrata:** pojednostavljenje modela; jedna rezervacija odnosi se na jedno plovilo, a matična luka je mjesto preuzimanja i povrata.
+- **Upravljanje radnim vremenom, zadacima i plaćama osoblja:** djelatnici se samo dodjeljuju rezervacijama; ne postoji zaseban sustav radnih zadataka niti evidencija radnog vremena.
+- **Naknade za otkazivanje, sezonski cjenici i popusti:** nisu traženi zadatkom; cijena najma i dodatne opreme određuje se po danu najma, a dodatne usluge jednokratno, čime se model cijena drži jednostavnim.
+- **Rezervacija više plovila odjednom i alternativne lokacije preuzimanja i povrata:** pojednostavljenje modela; jedna rezervacija odnosi se na jedno plovilo i jednog klijenta, a matična luka je mjesto preuzimanja i povrata.
 - **Vremenska prognoza izvan raspona servisa:** prikaz ovisi o razdoblju za koje odabrani meteorološki servis nudi podatke.
 
 
 **Vanjske ovisnosti:**
 
 - **AAI@EduHr (OAuth 2.0):** jedini način prijave korisnika; pruža identitet korisnika, dok uloge dodjeljuje sama aplikacija.
-- **Neon PostgreSQL:** pohrana podataka o korisnicima, plovilima, rezervacijama, opremi, uslugama i ostalim poslovnim podacima.
-- **Gmail API i OAuth 2.0:** autorizirani pristup Gmail računu aplikacije radi slanja e-pošte.
+- **Gmail API:** autorizirani pristup Gmail računu aplikacije radi slanja e-pošte.
 - **Kartografska usluga:** prikaz lokacije matične luke, ovisno o mogućnostima i uvjetima korištenja odabranog servisa.
 - **Meteorološka usluga:** dohvat vremenske prognoze za lokaciju i termin, ovisno o mogućnostima i uvjetima korištenja odabranog servisa.
 - **Hosting aplikacije:** postavljanje aplikacije kako bi joj korisnici mogli pristupati putem interneta.
