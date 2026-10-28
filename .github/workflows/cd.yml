@@ -37,6 +37,6 @@ jobs:
           key: ${{ secrets.SERVER_LOGIN }}
           port: "22"
           script: |
-            sudo docker load -i charter-build
             sudo docker stop charter-http-server
+            sudo docker load -i charter-build
             sudo docker run -d --name charter-http-server --rm -p 5201:8080 charter-build:latest
