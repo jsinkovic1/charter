@@ -1,88 +1,72 @@
 # 1. Opseg projekta
 
-**Cilj:** Objasniti odobreni projektni zadatak vlastitim riječima tima. Čitatelj treba razumjeti problem, ciljane korisnike, cilj projekta i njegove granice bez prethodnog čitanja detaljnih zahtjeva.
-
 ## 1.1 Problem i cilj projekta
 
-**Cilj:** Jasno razgraničiti problem koji se rješava od predloženog rješenja i stvarne koristi za korisnika.
+Cilj projekta je razvoj web-aplikacije za upravljanje poslovanjem charter tvrtke koja iznajmljuje plovila. Aplikacija klijentima treba omogućiti jednostavno pronalaženje odgovarajućeg plovila prema terminu i karakteristikama, uvid u cijenu najma i slanje zahtjeva za rezervaciju. Zaposlenicima tvrtke treba pružiti jedinstveno mjesto za upravljanje flotom, rezervacijama, dodatnim uslugama, nedostupnošću plovila, dodjelom djelatnika rezervacijama te rasporedom preuzimanja i povrata.
 
-[Problem, cilj i očekivana korist vlastitim riječima tima.]
+Kada se provjera dostupnosti plovila, dogovaranje termina, evidentiranje dodatnih usluga i praćenje rezervacija vode odvojeno, otežan je pregled poslovanja i raste mogućnost pogreške, osobito dvostrukog rezerviranja istog plovila u terminima koji se preklapaju. Predložena aplikacija objedinjuje te postupke u jednom sustavu s jednoznačnom evidencijom zauzetosti plovila.
 
-<details>
-<summary><strong>Očekivane koristi i potkrepljujući dokazi</strong></summary>
-
-**Primjer — CrisisMap:** „Tijekom teških vremenskih prilika građaninu mogu trebati prijave kriznih događaja relevantne za njegovu lokaciju. CrisisMap ima za cilj prikazati lokacijski relevantne prijave kriznih događaja na karti kako bi ih građanin mogao pronaći na jednom mjestu.” Time su navedeni problem, ciljani korisnik, predložena mogućnost i očekivana korist. Ne tvrdi se da je izmjereno smanjenje vremena reagiranja niti da aplikacija ima integraciju sa službom za hitne intervencije. Tim i dalje mora opisati opseg odobren za vlastiti projekt.
-
-„Aplikacija smanjuje vrijeme odgovora na krizni događaj za 30 % na temelju simulacija.” Broj očekivanu korist čini konkretnijom, ali odmah zahtijeva provjeru: **gdje je simulacija i kako je postotak izračunan?** Ako takav dokaz ne postoji, očekivanu korist navedite bez brojčanog rezultata.
-
-</details>
+Očekivana korist za klijente jest jednostavnije pretraživanje ponude, pregled cijene najma i praćenje vlastitih rezervacija. Za charter tvrtku očekivane su koristi lakše upravljanje plovilima i rezervacijama, smanjena mogućnost dvostrukog rezerviranja i jednostavnije praćenje poslovnih podataka. To su ciljevi projekta, a ne izmjereni rezultati: stvarno smanjenje pogrešaka moglo bi se potvrditi tek nakon uporabe sustava i usporedbe s prethodnim postupkom.
 
 ## 1.2 Ciljani korisnici i dionici
 
-**Cilj:** Utvrditi osobe, uloge i organizacije čije potrebe i interesi određuju projektni zadatak.
+Svi korisnici u sustav se prijavljuju isključivo putem AAI@EduHr identiteta (OAuth 2.0), a ovlasti korisnika određuje uloga koju mu dodjeljuje administrator aplikacije. Skupine se razlikuju prema tome koriste li aplikaciju izravno ili utječu na zahtjeve i ograničenja sustava.
 
 | Skupina korisnika ili dionika | Potreba ili interes relevantan za ovaj projekt |
 | --- | --- |
-|  |  |
+| Posjetitelj (neprijavljeni korisnik) | Bez prijave pregledati katalog plovila, njihove detalje, raspoloživost, kartu, vremensku prognozu i dodatne usluge i opremu. |
+| Klijent (prijavljeni korisnik koji želi unajmiti plovilo) | Pretražiti plovila prema terminu i karakteristikama, vidjeti cijenu, poslati zahtjev za rezervaciju s dodatnim uslugama i opremom te pregledati, izmijeniti ili otkazati vlastite rezervacije u skladu s pravilima sustava. |
+| Djelatnik charter tvrtke | Pregledati raspored preuzimanja i povrata plovila te podatke potrebne za realizaciju najma. Svaki djelatnik ima svoju specijalnost (skiper, mehaničar, čistač...) |
+| Administrator | Upravljati korisničkim računima, ulogama i specijalnostima, plovilima, lukama, vrstama plovila, fotografijama, opremom, cijenama, dodatnim uslugama, rezervacijama i razdobljima nedostupnosti, dodjeljivati djelatnike rezervacijama te održavati ispravnost podataka sustava. |
+| Voditelj charter tvrtke | Pregledati statističke podatke o poslovanju (broj rezervacija, zauzetost, iznosi, najtraženije kategorije i usluge) i izvesti izvještaje. |
+| Vlasnik ili uprava charter tvrtke (dionik) | Osigurati da aplikacija podržava poslovne potrebe tvrtke, olakšava organizaciju najma i kontrolira pristup podacima prema ulogama. |
+| Pružatelji vanjskih usluga (dionici) | AAI@EduHr (prijava), meteorološki i kartografski servis te servis za slanje e-pošte omogućuju rad aplikacije, ovisno o dostupnosti i uvjetima korištenja tih usluga. |
+| Osobe čiji se osobni podaci obrađuju i nadležna tijela za zaštitu podataka (dionici) | Očekuju odgovarajuću zaštitu osobnih podataka i ograničavanje pristupa podacima samo na ovlaštene osobe. Ne koriste aplikaciju izravno, ali određuju ograničenja sustava. |
 
-<details>
-<summary><strong>Korisnici, dionici i neobavezna persona</strong></summary>
+Skupine imaju različite potrebe i ovlasti: klijent ne smije imati mogućnosti administratora ili voditelja, a djelatnik pristupa samo funkcionalnostima potrebnima za svoj posao. Aplikacija zato mora razlikovati korisničke uloge i kontrolirati pristup funkcionalnostima.
 
-**Primjer — CrisisMap:**
-
-| Skupina korisnika ili dionika | Potreba ili interes relevantan za ovaj projekt |
-| --- | --- |
-| Građanin | Pronaći informacije o obližnjim kriznim događajima i podnijeti prijavu kriznog događaja s lokacijom. |
-| Koordinator pomoći | Pregledati prijave relevantne za područje i dostupne resurse, ako je koordinacija unutar odobrenog opsega. |
-| Regulatorno tijelo / Agencija za zaštitu podataka (Dionik) | Zahtijeva osiguravanje anonimnosti prijavitelja i zaštitu osobnih podataka (npr. usklađenost s GDPR-om). Ovaj dionik ne koristi aplikaciju, ali definira ograničenja sustava. |
-
-Riječ je o dvjema različitim potrebama, a ne o dvjema izmišljenim biografijama. Akter komunicira s aplikacijom; demonstrator na kolegiju kojem je rezultat zanimljiv ne mora biti akter aplikacije. Koristite uloge i ovlasti iz svojeg odobrenog zadatka. Persona je neobavezna i korisna je kada pomaže riješiti konkretno projektno pitanje.
-
-**Neobavezni primjer persone:** Ana, koordinatorica pomoći, treba aktualne informacije o resursima kako bi mogla rasporediti pomoć. To može pomoći kada tim odlučuje koje informacije koordinator treba vidjeti prve. Personu opišite samo ako objašnjava projektnu odluku; popis izmišljenih biografija nije obavezni rezultat kolegija.
-
-</details>
+Neobavezna persona: Baltazar, klijent koji planira ljetovanje s prijateljima, želi pronaći plovilo dovoljnog kapaciteta u odgovarajućem terminu i unaprijed znati koliko će najam koštati. Primjer pokazuje zašto su pretraživanje prema kapacitetu i terminu te prikaz ukupne cijene važni za korisničko sučelje. Persona služi za pojašnjenje projektne odluke, a nije tvrdnja o stvarnom korisniku.
 
 ## 1.3 Granice projekta
 
-**Cilj:** Jasno definirati granice sustava — što je obuhvaćeno odobrenim zadatkom, što je svjesno izostavljeno ili odgođeno te o kojim vanjskim uslugama sustav izravno ovisi.
+Granice projekta određuju funkcionalnosti koje pripadaju prvoj inačici aplikacije, funkcionalnosti koje su izostavljene te vanjske usluge o kojima sustav ovisi.
 
-**Uključeno:** [Glavne mogućnosti.]  
-**Izvan opsega ili odgođeno:** [Navedite funkcionalnosti koje su namjerno izostavljene ili prebačene u buduće verzije, uz kratko inženjersko ili vremensko obrazloženje.] 
-**Vanjske ovisnosti:** [Navedite nužne vanjske usluge, API-je, baze podataka ili izvore informacija bez kojih sustav ne može funkcionirati (npr. Google Maps, platni pristupnici, vanjski pružatelj identiteta (OAuth)).]
+**Uključeno:**
 
-<details>
-<summary><strong>Primjer početne granice projekta</strong></summary>
+- Prijava i odjava isključivo putem AAI@EduHr (OAuth 2.0); automatsko stvaranje računa pri prvoj prijavi, upravljanje korisničkim računima, ulogama (klijent, djelatnik, voditelj, administrator) i specijalnostima djelatnika.
+- Pregled kataloga plovila te dodatnih usluga i opreme bez prijave; pretraživanje i filtriranje prema terminu najma, matičnoj luci, vrsti plovila i kapacitetu.
+- Prikaz detalja plovila (osnovni podaci, fotografije, oprema, matična luka, cijena najma) i kalendara raspoloživosti.
+- Izrada, izmjena (dok je zahtjev u obradi), potvrđivanje, odbijanje i otkazivanje rezervacija uz definirane statuse i dopuštene prijelaze; automatski završetak najma nakon isteka razdoblja najma.
+- Evidencija zauzetosti plovila, razdoblja nedostupnosti i sprječavanje preklapanja termina; razdoblja se zadaju datumom i vremenom.
+- Odabir dodatnih usluga i dodatne opreme (s količinom) te izračun ukupnog iznosa rezervacije prema broju započetih 24-satnih razdoblja najma.
+- Dodjela djelatnika rezervaciji uz upozorenja kada usluga zahtijeva specijalnost koju nitko od dodijeljenih djelatnika nema te kada je djelatnik već dodijeljen preklapajućoj rezervaciji.
+- Raspored preuzimanja i povrata za djelatnike s podacima o dodijeljenim djelatnicima.
+- Upravljanje plovilima, lukama, vrstama plovila, fotografijama, opremom, cijenama, dodatnim uslugama i nedostupnošću.
+- Slanje e-pošte: potvrda rezervacije i obavijest o otkazivanju ili odbijanju.
+- Statistika poslovanja i izvoz izvještaja u CSV formatu.
+- Prikaz matične luke (mjesta preuzimanja) na karti i vremenske prognoze putem vanjskih usluga, u granicama mogućnosti tih usluga.
+- Responzivno korisničko sučelje za računala, tablete i mobilne uređaje.
 
-**Primjer — CrisisMap:**  
-**Uključeno:** Podnošenje prijave kriznog događaja s lokacijom i pregled prijava na karti.  
-**Isključeno:** Automatsko angažiranje hitnih službi; prikaz prijave ne odobrava niti pokreće službenu intervenciju.  
-**Vanjska ovisnost:** Pružatelj kartografskih usluga omogućuje prikaz karte; aplikacija ostaje odgovorna za vlastite podatke o prijavama.
+**Izvan opsega ili odgođeno:**
 
-Ovo je konkretna granica jer razdvaja prikaz informacija od službenog odgovora hitnih službi i određuje koji sustav osigurava kartu. Izuzeće i ovisnost dio su **nastavnog scenarija**, a ne tvrdnja o tome što objavljena aplikacija stvarno implementira; te činjenice određuju odobreni opseg i stvarna aplikacija tima.
+- **Online plaćanje:** aplikacija prikazuje izračunati iznos, ali ne provodi naplatu niti obrađuje podatke o platnim karticama ili evidenciju uplata.
+- **Prijava lokalnim računom i lozinkom:** kolegij zahtijeva da je AAI@EduHr jedini način prijave, pa aplikacija ne nudi vlastitu registraciju ni pohranu lozinki.
+- **Upravljanje radnim vremenom, zadacima i plaćama osoblja:** djelatnici se samo dodjeljuju rezervacijama; ne postoji zaseban sustav radnih zadataka niti evidencija radnog vremena.
+- **Naknade za otkazivanje, sezonski cjenici i popusti:** nisu traženi zadatkom; cijena najma i dodatne opreme određuje se po danu najma, a dodatne usluge jednokratno, čime se model cijena drži jednostavnim.
+- **Rezervacija više plovila odjednom i alternativne lokacije preuzimanja i povrata:** pojednostavljenje modela; jedna rezervacija odnosi se na jedno plovilo i jednog klijenta, a matična luka je mjesto preuzimanja i povrata.
+- **Vremenska prognoza izvan raspona servisa:** prikaz ovisi o razdoblju za koje odabrani meteorološki servis nudi podatke.
 
-**Drugi primjer korisne granice:** U prvoj implementaciji usredotočite se na koordinaciju odgovora na poplavu. Navedite vrste događaja ili korisnika koje pokriva odobreni projekt umjesto obećavanja svih mogućih kriznih procesa. Predviđanje pomoću umjetne inteligencije ili obuku u virtualnoj stvarnosti navedite kao budući rad samo ako predstavljaju smislen sljedeći korak, a ne kao pretpostavljene funkcionalnosti prve inačice.
 
-Tvrdnja poput „modularna arhitektura omogućuje brzo postavljanje u novim regijama” zahtijeva stvarno projektno uporište. Ovdje nemojte obećavati prilagodljivost samo zato što zvuči kao poželjna korist projekta.
+**Vanjske ovisnosti:**
 
-Ovaj pregled zadržite na razini opsega: navedite glavnu mogućnost i njezinu granicu bez popisivanja svakog zahtjeva ili projektne pojedinosti. Ono što je stvarno dovršeno i ono što je ostalo nedovršeno navedite u završnim rezultatima, a ne u ovom početnom opisu.
+- **AAI@EduHr (OAuth 2.0):** jedini način prijave korisnika; pruža identitet korisnika, dok uloge dodjeljuje sama aplikacija.
+- **Gmail API:** autorizirani pristup Gmail računu aplikacije radi slanja e-pošte.
+- **Kartografska usluga:** prikaz lokacije matične luke, ovisno o mogućnostima i uvjetima korištenja odabranog servisa.
+- **Meteorološka usluga:** dohvat vremenske prognoze za lokaciju i termin, ovisno o mogućnostima i uvjetima korištenja odabranog servisa.
+- **Hosting aplikacije:** postavljanje aplikacije kako bi joj korisnici mogli pristupati putem interneta.
 
-</details>
+Vanjske usluge odgovorne su za vlastite podatke i dostupnost. Aplikacija ostaje odgovorna za ispravnost vlastitih poslovnih podataka i pravila rezerviranja. Primjerice, prikaz vremenske prognoze nije jamstvo vremenskih uvjeta, a prikaz plovila kao dostupnog temelji se isključivo na podacima o rezervacijama i nedostupnosti u aplikaciji.
 
 ## 1.4 Postojeći pristupi i opravdanost projekta
 
-**Cilj:** Objasniti kako korisnici trenutačno rješavaju problem i koja preostala potreba opravdava odobreni projekt.
-
-[U dvije do četiri rečenice opišite jedan postojeći postupak ili relevantno rješenje, što ono već omogućuje i koja konkretna potreba motivira ovaj projekt. Činjenične tvrdnje o vanjskim proizvodima ili praksama potkrijepite izvorom.]
-
-<details>
-<summary><strong>Postojeći pristupi i opravdanost projekta</strong></summary>
-
-**Primjer — CrisisMap:** „Nakon teškog vremenskog događaja građanin će možda morati provjeriti izvor meteoroloških upozorenja i zaseban izvor lokalnih prijava. Predloženi prikaz na karti u CrisisMapu objedinjuje prijave kriznih događaja relevantne za odabranu lokaciju. Aplikacija ne zamjenjuje službena upozorenja ni hitne službe.” Time se objašnjava potreba i namjeravana granica projekta bez tvrdnje da su svi postojeći kanali neučinkoviti. Prva je rečenica **primjer korisničkog scenarija**, a ne izmjeren nalaz o stvarnim korisnicima. Ako tim navodi konkretnu službu upozoravanja ili konkurentski proizvod, treba navesti izvor. Pregled konkurencije i snimke zaslona nisu obavezni.
-
-Ako je postojeće rješenje stvarno utjecalo na projekt, usporedite samo relevantnu funkcionalnost, primjerice jasnoću karte ili potrebnu integraciju. Izbjegavajte unaprijed zadani broj proizvoda ili tablicu kriterija koji nisu povezani s odobrenim zadatkom.
-
-</details>
-
----
-
->**Završna provjera:** Opis problema, cilj projekta, korisnici i dionici, granice opsega te postojeći pristupi međusobno su usklađeni. Navedene koristi ne predstavljaju neprovjerene tvrdnje, a uključene i izostavljene funkcionalnosti odgovaraju odobrenom projektnom zadatku.
+Pri organizaciji najma plovila informacije o ponudi, raspoloživim terminima, korisnicima i dodatnim uslugama mogu se razmjenjivati putem e-pošte ili različitih evidencija. Takav postupak može zahtijevati ručno uspoređivanje termina i zasebno ažuriranje podataka, osobito kada više osoba sudjeluje u upravljanju rezervacijama. Predložena aplikacija objedinjuje te informacije i omogućuje pregled dostupnosti plovila, evidentiranje rezervacija i automatski izračun ukupnog iznosa. Time se nastoji olakšati rad korisnicima i zaposlenicima te smanjiti mogućnost pogrešaka uzrokovanih nepovezanim evidencijama.

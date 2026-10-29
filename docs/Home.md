@@ -1,30 +1,24 @@
 # [Naziv aplikacije] — Projektna dokumentacija
 
 **Kolegij:** [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz), Fakultet elektrotehnike i računarstva Sveučilišta u Zagrebu  
-**Akademska godina:** [20XX./20XX.]  
-**Tim:** [Oznaka i naziv tima]  
+**Akademska godina:** [2026./2027.]  
+**Tim:** G09.2 - GitHappens  
 **Nastavnik:** Vlado Sruk  
-**Asistent / demonstrator:** [Ime i uloga u ovom izvođenju kolegija]
+**Asistent:** Miljenko Krhen  
+**Demonstrator:** Ivo Gabud  
 
 ## Pregled projekta
 
-**Cilj:** Omogućiti čitatelju koji prvi put vidi projekt da u dvije ili tri rečenice prepozna aplikaciju, njezine ciljane korisnike i glavnu svrhu.
+Web-aplikacija za upravljanje poslovanjem charter tvrtke koja iznajmljuje plovila (projektni zadatak: Charter poslovanje). Klijenti pretražuju plovila prema terminu, matičnoj luci, vrsti i kapacitetu, vide ukupnu cijenu najma i šalju zahtjev za rezervaciju, dok djelatnici, voditelj i administrator tvrtke na jednom mjestu upravljaju flotom, rezervacijama, dodatnim uslugama, nedostupnošću plovila i rasporedom preuzimanja i povrata. Korisnici se prijavljuju putem AAI@EduHr, a aplikacija uz plovila prikazuje kartu matične luke i vremensku prognozu.
 
-[Opis projekta.]
-
-<details>
-<summary><strong>Sažet pregled projekta</strong></summary>
-
-Za projekt na temu CrisisMap sažet pregled može navesti građane kojima trebaju informacije o kriznim događajima povezane s njihovom lokacijom te cilj aplikacije da prijave kriznih događaja prikaže na karti. Funkcionalnost spomenite samo ako pripada odobrenom zadatku tima; bez dokaza nemojte tvrditi da aplikacija poboljšava odgovor hitnih službi. Ovo je primjer informativnog pregleda, a ne tekst za prepisivanje niti dokaz da je funkcionalnost ostvarena.
-
-</details>
-
+<!--
 **Aplikacija i osnovno postavljanje:** [README repozitorija](../README_PREDLOZAK.md#quick-start)  
 **Javno dostupna aplikacija:** pogledajte [README – Postavljanje](../README_PREDLOZAK.md#deployment)
+-->
 
 ## Članovi tima i uloge
 
-Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa nalazi se u [README-u repozitoriju](../README_PREDLOZAK.md#team-members).
+Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa nalazi se u [README-u repozitoriju](../README.md#team-members).
 
 ## Kazalo dokumentacije
 
@@ -33,12 +27,15 @@ Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa
 | [1. Opseg projekta](1-Projekt.md) | Problem, cilj i granice projekta |
 | [2. Analiza zahtjeva](2-Analiza-zahtjeva.md) | Zahtjevi, ograničenja i sljedivost |
 | [3. Obrasci uporabe](3-Obrasci-uporabe.md) | Akteri i reprezentativne interakcije korisnika |
+| [A. Pregled aktivnosti grupe](A-Pregled-aktivnosti-grupe.md) | Aktivnosti tima, doprinosi i izazovi |
+<!--
 | [4. Arhitektura i oblikovanje](4-Arhitektura-i-oblikovanje.md) | Glavne odluke oblikovanja, struktura, podaci i ponašanje |
 | [5. Ispitivanje](5-Ispitivanje.md) | Pristup ispitivanju, stvarni rezultati i poznati nedostaci |
 | [6. Postavljanje, instalacija i konfiguracija](6-Postavljanje-instalacija-i-konfiguracija.md) | Lokalna instalacija, konfiguracija, javno postavljanje i administracija |
 | [7. Zaključak i budući rad](7-Zakljucak-i-buduci-rad.md) | Zaključak i moguća daljnja poboljšanja |
-| [A. Pregled aktivnosti grupe](A-Pregled-aktivnosti-grupe.md) | Aktivnosti tima, doprinosi i izazovi |
+-->
 
+<!--
 ## Ključne točke projekta
 
 | Kontrolna točka | Demonstracija | Video |
@@ -47,33 +44,18 @@ Ažurirani popis članova, njihovih GitHub profila i glavnih uloga ili doprinosa
 | Završni pregled | [Poveznica na završnu inačicu projekta] | [Poveznica na video završne demonstracije, ako je snimljen] |
 
 Dokumentacija se kontinuirano ažurira kako se aplikacija razvija.
+-->
 
 ## Organizacija projekta i razvojni proces
 
-**Način rada:** [Stvarni način rada i trajanje iteracije, ako je relevantno.]  
-**Praćenje trenutačnih zadataka i nedostataka:** [Poveznica na GitHub Issues ili stvarno korištenu ploču zadataka.]
+**Način rada:** cijeli tim (7 članova) sastaje se jednom tjedno radi dogovora o prioritetima i pregleda napretka, a članovi na srodnim funkcionalnostima i zadacima dodatno se međusobno usklađuju češće, prema potrebi.  
+**Praćenje trenutačnih zadataka i nedostataka:** zadaci se prate u [GitHub Issues](https://github.com/jsinkovic1/programsko-inzenjerstvo/issues)
 
-<details>
-<summary><strong>Opis načina rada tima</strong></summary>
-
-**Primjer — CrisisMap:**
-
-Navedite pristup koji tim stvarno koristi. Tim koji razvija CrisisMap može organizirati prijave, rad na karti i provjere kao GitHub Issues, jednom tjedno raspraviti prioritete i iznad postaviti poveznicu na svoju aktivnu ploču zadataka. Takav je konkretan opis procesa informativniji od tvrdnje da tim koristi „Scrum” ako zapravo ne primjenjuje njegove prakse. Stvarni tim treba navesti vlastiti ritam rada i odgovornosti; dokumentacija ne treba duplicirati ploču zadataka. Primjer opisuje mogući tijek rada (engl. workflow), a ne tvrdi da je objavljeni tim CrisisMapa radio upravo tako.
-
-</details>
 
 ## Pravila dokumentacije
 
-Dokumentacija se sastoji od međusobno povezanih Markdown stranica. Obavezni UML dijagrami izrađuju se u PlantUML-u, uz PlantUML izvor u dokumentaciji sačuvajte i čitljivu sliku. Primjeri u ovom predlošku kolegija pokazuju kako nešto dokumentirati; nisu dio rezultata studentskog projekta.
+Dokumentacija se sastoji od međusobno povezanih Markdown stranica. Obavezni UML dijagrami izrađuju se u PlantUML-u, uz PlantUML izvor u dokumentaciji sačuvane su i čitljive slike.
 
-<details>
-<summary><strong>Izvori dijagrama i nastavni primjeri</strong></summary>
-
-Nastavni primjeri pretpostavljaju React/Vite klijentski dio, Node.js poslužiteljski dio, PostgreSQL, smještaj aplikacije na Renderu i Selenium WebDriver (JavaScript). Vaš tehnološki skup može biti drukčiji; u dokumentaciji opišite ono što stvarno koristite.
-
-Za obrazac uporabe podnošenja prijave kriznog događaja u CrisisMapu tim može čuvati UML izvor u `.puml` datoteci, prikazati odgovarajuću sliku na relevantnoj stranici dokumentacije te ažurirati oboje kada se interakcija promijeni. Koristite stvarni dijagram i stvarno postavljanje vlastitog projekta. Domena ili tehnologija prikazana u primjeru ne postaje zahtjev osim ako je dio odobrenog zadatka.
-
->Napomena o primjerima: Blokovi „Primjer — CrisisMap" nastavni su scenarij, a ne rezultat ičijeg projekta; ne prepisujte ih. U primjerima se koriste React, Node.js, PostgreSQL, Render i Selenium samo radi dosljednosti. Vaš stog može biti drukčiji (npr. Java/Spring); dokumentirajte ono što stvarno koristite.</details>
 
 ## Akademski integritet, ponašanje i licenciranje
 
