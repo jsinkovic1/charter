@@ -17,6 +17,7 @@ namespace CharterBackend.Controllers
 			this.ctx = ctx;
 		}
 
+
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
