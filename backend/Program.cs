@@ -5,25 +5,23 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: myAllowSpecificOrigins,
-        policy  =>
-        {
-            policy.WithOrigins("http://localhost:5173", "http://localhost:8080");
-        });
-});
-
-
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(e => e.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+const string frontendEndpoint = "http://13.50.242.217";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "Default",
+        policy  =>
+        {
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -33,10 +31,11 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseCors(myAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseCors("Default");
 app.UseAuthorization();
 
 app.MapControllers();

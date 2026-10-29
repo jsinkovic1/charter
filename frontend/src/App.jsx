@@ -7,12 +7,13 @@ import './App.css'
 function App() {
     const [count, setCount] = useState(0)
     const [data, setData] = useState(null);
-    
+
     useEffect(() => {
-        fetch(import.meta.env.PUBLIC_API_ROOT + "/test").then(result => result.json()).then(result => {
+        fetch("/api/test", { mode: "cors" }).then(result => result.json()).then(result => {
             setData(result);
         });
     }, []);
+
 
     console.log(data)
 
