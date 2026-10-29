@@ -7,9 +7,9 @@ import './App.css'
 function App() {
     const [count, setCount] = useState(0)
     const [data, setData] = useState(null);
-
+    
     useEffect(() => {
-        fetch("http://localhost:5201/test").then(result => result.json()).then(result => {
+        fetch(import.meta.env.PUBLIC_API_ROOT + "/test").then(result => result.json()).then(result => {
             setData(result);
         });
     }, []);
