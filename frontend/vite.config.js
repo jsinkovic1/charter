@@ -11,7 +11,7 @@ export default defineConfig({
                 {
                     '/api/test':
                         {
-                            target: 'http://13.50.242.217:5201',
+                            target: 'http://16.192.213.81:5201',
                             changeOrigin: true,
                         }
                 }

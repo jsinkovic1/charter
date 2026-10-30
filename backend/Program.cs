@@ -13,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(e => e.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-const string frontendEndpoint = "http://13.50.242.217";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "Default",
