@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Cors;
 
 namespace CharterBackend.Controllers
@@ -18,6 +19,7 @@ namespace CharterBackend.Controllers
             var res = new
             {
                 time = DateTime.Now,
+                start_time = Process.GetCurrentProcess().StartTime,
                 foo = "bar",
                 test = true
             };
